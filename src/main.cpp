@@ -1,7 +1,7 @@
 // Copyright 2021 NNTU-CS
-#include "../include/bst.h"
 #include <iostream>
 #include <string>
+#include "../include/bst.h"
 
 void makeTree(BST<std::string>& tree, const char* filename);
 void printFreq(BST<std::string>& tree);
@@ -15,8 +15,7 @@ int main() {
 
     if (tree.search("war")) {
         std::cout << "Слово 'war' найдено" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Слово 'war' не найдено" << std::endl;
     }
 
