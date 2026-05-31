@@ -1,6 +1,6 @@
 // Copyright 2021 NNTU-CS
-#ifndef BST_H
-#define BST_H
+#ifndef INCLUDE_BST_H_
+#define INCLUDE_BST_H_
 
 #include <string>
 #include <vector>
@@ -8,14 +8,14 @@
 
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T value;
         int count;
         Node* left;
         Node* right;
 
-        Node(const T& val) : value(val), count(1), left(nullptr), right(nullptr) {}
+        explicit Node(const T& val) : value(val), count(1), left(nullptr), right(nullptr) {}
     };
 
     Node* root;
@@ -23,14 +23,11 @@ private:
     void addNode(Node*& node, const T& value) {
         if (node == nullptr) {
             node = new Node(value);
-        }
-        else if (value < node->value) {
+        } else if (value < node->value) {
             addNode(node->left, value);
-        }
-        else if (value > node->value) {
+        } else if (value > node->value) {
             addNode(node->right, value);
-        }
-        else {
+        } else {
             node->count++;
         }
     }
@@ -58,11 +55,11 @@ private:
     void collect(Node* node, std::vector<std::pair<T, int>>& items) const {
         if (node == nullptr) return;
         collect(node->left, items);
-        items.push_back({ node->value, node->count });
+        items.push_back({node->value, node->count});
         collect(node->right, items);
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     ~BST() {
