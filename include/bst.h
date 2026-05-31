@@ -23,11 +23,14 @@ private:
     void addNode(Node*& node, const T& value) {
         if (node == nullptr) {
             node = new Node(value);
-        } else if (value < node->value) {
+        }
+        else if (value < node->value) {
             addNode(node->left, value);
-        } else if (value > node->value) {
+        }
+        else if (value > node->value) {
             addNode(node->right, value);
-        } else {
+        }
+        else {
             node->count++;
         }
     }
@@ -55,7 +58,7 @@ private:
     void collect(Node* node, std::vector<std::pair<T, int>>& items) const {
         if (node == nullptr) return;
         collect(node->left, items);
-        items.push_back({node->value, node->count});
+        items.push_back({ node->value, node->count });
         collect(node->right, items);
     }
 
@@ -85,5 +88,4 @@ public:
         collect(root, items);
     }
 };
-
 #endif  // INCLUDE_BST_H_
