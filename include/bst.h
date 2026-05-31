@@ -40,12 +40,13 @@ class BST {
 
     int getDepth(Node* node) const {
         if (node == nullptr) return 0;
+        if (node->left == nullptr && node->right == nullptr) return 0;
         return 1 + std::max(getDepth(node->left), getDepth(node->right));
     }
 
-    bool searchNode(Node* node, const T& value) const {
-        if (node == nullptr) return false;
-        if (value == node->value) return true;
+    int searchNode(Node* node, const T& value) const {
+        if (node == nullptr) return 0;
+        if (value == node->value) return node->count;
         if (value < node->value) return searchNode(node->left, value);
         return searchNode(node->right, value);
     }
@@ -84,7 +85,7 @@ class BST {
         return getDepth(root);
     }
 
-    bool search(T value) const {
+    int search(T value) const {
         return searchNode(root, value);
     }
 
