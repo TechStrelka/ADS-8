@@ -8,6 +8,12 @@
 
 template <typename T>
 class BST {
+ public:
+    struct Item {
+        T value;
+        int count;
+    };
+
  private:
     struct Node {
         T value;
@@ -52,10 +58,11 @@ class BST {
         }
     }
 
-    void collect(Node* node, std::vector<std::pair<T, int>>& items) const {
+    void collect(Node* node, std::vector<Item>& items) const {
         if (node == nullptr) return;
         collect(node->left, items);
-        items.push_back({node->value, node->count});
+        Item item = {node->value, node->count};
+        items.push_back(item);
         collect(node->right, items);
     }
 
@@ -81,8 +88,9 @@ class BST {
         return searchNode(root, value);
     }
 
-    void getAllElements(std::vector<std::pair<T, int>>& items) const {
+    void getAllElements(std::vector<Item>& items) const {
         collect(root, items);
     }
 };
+
 #endif  // INCLUDE_BST_H_
